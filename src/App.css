@@ -18,12 +18,18 @@
   padding-top: 65px;
   overflow-x: hidden;
   overflow-y: auto;
-  /*border: 1px solid red;*/
 }
 
 .foot {
+  padding-top: 10px !important;
+  height: 40px;
+  text-align: center;
   /*border: 1px solid red;*/
-  height: 50px;
-  text-align: center
+  
+}
+
+.content {
+  margin: 24px 16px 0px;
+  overflow: auto
 }
 

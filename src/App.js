@@ -68,7 +68,7 @@ class App extends React.Component {
 
 
 
-          <Content style={{ margin: '24px 16px 0', overflow: 'auto' }}>
+          <Content className="content">
             <div style={{ padding: 20, background: '#fff', textAlign: 'center' }}>
               ...
             <br />
@@ -87,7 +87,9 @@ class App extends React.Component {
           </Content>
 
           <div className="foot">
-            &copy; 新智资讯 2014-2015 <a href="mailto:contact@beyondlink.net">联系我们</a> | <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11010360号-3</a>
+            <span className="foot-span">
+              &copy; 新智资讯 2014-2015 <a href="mailto:contact@beyondlink.net">联系我们</a> | <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11010360号-3</a>
+            </span>
           </div>
 
         </Layout>
