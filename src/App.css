@@ -1,35 +1,55 @@
-.header-logo {
-  position: absolute;
-  left: 28px;
-  top: 15px;
-  width: 150px;
-  height: 30px;
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 60px;
-}
-
-.silder {
-  background-color: white;
-  padding-top: 65px;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-.foot {
-  padding-top: 10px !important;
-  height: 40px;
-  text-align: center;
-  /*border: 1px solid red;*/
-  
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
 .content {
-  margin: 24px 16px 0px;
-  overflow: auto
+  width: 100%;
+  height: 100%;
+  
 }
 
+.box {
+  width: 600px;
+  height: 169px;
+  margin: 130px auto;
+  padding-top: 20px;
+  /*border: 1px solid red*/
+}
+
+.index-logo {
+  width: 350px;
+  height: 72px;
+  margin: 0 auto;
+}
+
+.input {
+  width: 540px;
+  height: 40px;
+  margin-top: 35px;
+}
+
+.searchBtn {
+  height: 40px;
+}
+
+.foot-box {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+}
+
+.dropDown {
+  width: 540px;
+}
+
+.loading {
+  width: 50px;
+  height: 20px;
+  margin-left: 48%;
+  margin-bottom: 5px;
+  font-size: 20px;
+  color: #108ee9;
+}
