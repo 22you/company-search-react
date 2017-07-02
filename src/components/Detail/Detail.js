@@ -1,7 +1,7 @@
 import { Layout, Breadcrumb, Menu, Icon } from 'antd';
 import React from 'react';
-import '../App.css';
-import logo from '../static/icon-large.png';
+import './Detail.css';
+import logo from '../../static/icon-large.png';
 
 const SubMenu = Menu.SubMenu;
 
@@ -13,7 +13,6 @@ class App extends React.Component {
     openKeys: ['bj'],
   }
   handleClick = (e) => {
-    console.log(e)
     this.setState({
       curItem: e.key,
     })

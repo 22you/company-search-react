@@ -1,6 +1,7 @@
 import { Button, Input, Dropdown, Menu, Icon } from 'antd';
 import Foot from './components/Foot/Foot'
 import React from 'react';
+import { History } from 'react-router';
 import './App.css';
 import logo from './static/icon-large.png';
 
@@ -42,6 +43,8 @@ class App extends React.Component {
       this.setState({
         loading: true
       })
+      // this.history.pushState(null, '/detail')
+      window.location.href = `/detail?name=${value}&id=22822`
       console.log(value)
     }
   }
