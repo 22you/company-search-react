@@ -2,15 +2,23 @@ import { Layout, Breadcrumb, Menu, Icon } from 'antd';
 import React from 'react';
 import './Detail.css';
 import logo from '../../static/icon-large.png';
+import { Link } from 'react-router-dom'
+import { Route } from 'react-router'
+import Staff from '../Staff/Staff'
+import Info from '../Info/Info'
+import detailRouter from './router'
 
 const SubMenu = Menu.SubMenu;
 
 const { Header, Content, Sider} = Layout;
 
 class App extends React.Component {
-  state = {
-    curItem: 'baseInfo',
-    openKeys: ['bj'],
+  constructor(props) {
+    super(props)
+    this.state = {
+      curItem: 'baseInfo',
+      openKeys: ['bj'],
+    }
   }
   handleClick = (e) => {
     this.setState({
@@ -23,11 +31,13 @@ class App extends React.Component {
     })
   }
   // 渲染菜单
-  setMenu() {
+  setMenu = () => {
+    const { match } = this.props;
     const menuItem = this.props.menu.map(function (m, i) {
       const parent = m.parent;
-      const items = m.item.map((item, index) => <Menu.Item key={item.id}>{item.text}</Menu.Item>);
-      return <SubMenu key={parent.id} title={<span><Icon type={parent.icon} />{parent.text}</span>}>
+      const items = m.item.map((item, index) => <Menu.Item key={item.id}><Link to={`${match.url}/${item.id}`}>{item.text}</Link></Menu.Item>);
+      return <SubMenu key={parent.id} title={<span><Icon type={parent.icon} />{parent.text}</span>}
+      >
         {items}
       </SubMenu>
     })
@@ -40,7 +50,10 @@ class App extends React.Component {
       {menuItem}
     </Menu>
   }
+
+
   render() {
+    const { match } = this.props;
     const SildMenu = this.setMenu();
     return (
       <Layout style={{ height: '100vh' }}>
@@ -68,7 +81,9 @@ class App extends React.Component {
 
 
           <Content className="content">
-            <div style={{ padding: 20, background: '#fff', textAlign: 'center' }}>
+            <div style={{ padding: 20, background: '#fff', textAlign: 'center' }} className="detail-content">
+              <Route path={`${match.url}/staff`} component={Staff}/>
+              <Route path={`${match.url}/baseinfo`} component={Info}/>
               ...
             <br />
               Really
@@ -96,6 +111,7 @@ class App extends React.Component {
     )
   }
 }
+
 
 App.defaultProps = {
   menu: [{

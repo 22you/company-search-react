@@ -1,19 +1,21 @@
 import { Button, Input, Dropdown, Menu, Icon } from 'antd';
 import Foot from './components/Foot/Foot'
 import React from 'react';
-import { History } from 'react-router';
 import './App.css';
 import logo from './static/icon-large.png';
 
 
-
 class App extends React.Component {
-  state = {
-    loading: false,// 按钮加载状态
-    value: '',// input 的值
-    showDropDown: false,// 是否显示下拉菜单
-    searchResult: []// 搜索结果
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: false,// 按钮加载状态
+      value: '',// input 的值
+      showDropDown: false,// 是否显示下拉菜单
+      searchResult: []// 搜索结果
+    };
   }
+
   searchData = (event) => {
     const value = event.target.value.trim();
     const showDropDown = !!value;
@@ -21,8 +23,9 @@ class App extends React.Component {
       value,
       showDropDown
     });
-    
   }
+
+
   renderResult = () => {
     let items = this.state.searchResult.map(function(d) {
       return <Menu.Item key={d.id}>
@@ -43,14 +46,12 @@ class App extends React.Component {
       this.setState({
         loading: true
       })
-      // this.history.pushState(null, '/detail')
-      window.location.href = `/detail?name=${value}&id=22822`
-      console.log(value)
+      this.props.history.push('/detail')
     }
   }
   render() {
     return (
-      <div className="content">
+      <div>
         <div className="box">
 
           <div className="index-logo">
@@ -60,18 +61,19 @@ class App extends React.Component {
           <tr>
             <td className="input">
               <Input placeholder="请输入企业名称"
-              size="large" 
-              className="input"  
-              value={this.state.value}
-              onPressEnter={this.searchData}
-              onChange={this.searchData}
-              />
+                size="large" 
+                className="input"  
+                value={this.state.value}
+                onPressEnter={this.searchData}
+                onChange={this.searchData}
+                />
             </td>
             <td>
-              <Button type="primary" className="searchBtn" 
-              loading={this.state.loading}
-              onClick={this.showResult}
-              >搜索</Button>
+                  <Button type="primary" className="searchBtn" 
+                loading={this.state.loading}
+                onClick={this.showResult}
+                >搜索</Button>
+              
             </td>
           </tr>
           <Dropdown 

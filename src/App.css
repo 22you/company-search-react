@@ -7,7 +7,10 @@ html, body {
 .content {
   width: 100%;
   height: 100%;
-  
+}
+
+.ant-layout {
+  overflow-x: hidden !important;
 }
 
 .box {
@@ -15,7 +18,6 @@ html, body {
   height: 169px;
   margin: 130px auto;
   padding-top: 20px;
-  /*border: 1px solid red*/
 }
 
 .index-logo {
