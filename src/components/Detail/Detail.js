@@ -1,12 +1,10 @@
 import { Layout, Breadcrumb, Menu, Icon } from 'antd';
 import React from 'react';
-import './Detail.css';
 import logo from '../../static/icon-large.png';
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router'
-import Staff from '../Staff/Staff'
-import Info from '../Info/Info'
-import detailRouter from './router'
+import Staff from './children/Staff'
+import Info from './children/Info'
 
 const SubMenu = Menu.SubMenu;
 
@@ -57,10 +55,10 @@ class App extends React.Component {
     const SildMenu = this.setMenu();
     return (
       <Layout style={{ height: '100vh' }}>
-        <Sider className="silder">
+        <Sider style={styles.sider}>
           {/*logo*/}
           <a>
-            <img className="header-logo" src={logo} alt=""></img>
+            <img style={styles.headerLogo} src={logo} alt=""></img>
           </a>
 
           {/*菜单选项*/}
@@ -80,27 +78,15 @@ class App extends React.Component {
 
 
 
-          <Content className="content">
-            <div style={{ padding: 20, background: '#fff', textAlign: 'center' }} className="detail-content">
+          <Content style={styles.content} className="content">
+            <div style={styles.detailContent}>
               <Route path={`${match.url}/staff`} component={Staff}/>
               <Route path={`${match.url}/baseinfo`} component={Info}/>
-              ...
-            <br />
-              Really
-            <br />...<br />...<br />...<br />
-              long
-            <br />...<br />...<br />...<br />...<br />...<br />...
-            <br />...<br />...<br />...<br />...<br />...<br />...
-            <br />...<br />...<br />...<br />...<br />...<br />...
-            <br />...<br />...<br />...<br />...<br />...<br />...
-            <br />...<br />...<br />...<br />...<br />...<br />...
-            <br />...<br />...<br />...<br />...<br />...<br />...
-            <br />...<br />...<br />...<br />...<br />...<br />
-              content
+             
           </div>
           </Content>
 
-          <div className="foot">
+          <div style={styles.foot}>
             <span className="foot-span">
               &copy; 新智资讯 2014-2015 <a href="mailto:contact@beyondlink.net">联系我们</a> | <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11010360号-3</a>
             </span>
@@ -230,5 +216,46 @@ App.defaultProps = {
     }]
   }],
 };
+
+const styles = {
+  headerLogo: {
+    position: 'fixed',
+    left: '28',
+    top: '15',
+    width: '150',
+    height: '30'
+  },
+  header: {
+    position: 'fixed',
+    top: 0,
+    width: '100%',
+    height: '60'
+  },
+  sider: {
+    backgroundColor: 'white',
+    paddingTop: '65',
+    overflowX: 'hidden',
+    overflowY: 'auto'
+  },
+  foot: {
+    paddingTop: '10',
+    height: 40,
+    textAlign: 'center',
+  },
+  content: {
+    margin: '24px 16px 0px',
+    overflow: 'auto'
+  },
+  detailContent: {
+    width: '100%',
+    height: '100%',
+    overflow: 'auto',
+    padding: 20,
+    background: '#fff',
+    textAlign: 'center' 
+  }
+};
+
+
 
 export default App
