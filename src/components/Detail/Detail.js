@@ -1,28 +1,55 @@
 import { Layout, Breadcrumb, Menu, Icon } from 'antd';
 import React from 'react';
 import logo from '../../static/icon-large.png';
-import { Link } from 'react-router-dom'
-import { Route } from 'react-router'
+import { Link, Route } from 'react-router-dom'
 import Staff from './children/Staff'
 import Info from './children/Info'
+import { parseUrl } from '../../libs/utils'
 
 const SubMenu = Menu.SubMenu;
 
-const { Header, Content, Sider} = Layout;
+const { Header, Content, Sider } = Layout;
 
 class App extends React.Component {
   constructor(props) {
     super(props)
+    const { history, match } = this.props;
+    const location = history.location;
+    const params = match.params;
+    const query = parseUrl(location.search);
     this.state = {
-      curItem: 'baseInfo',
-      openKeys: ['bj'],
-    }
+      openKeys: [params.mod || 'bj'],
+      curItem: params.item || 'baseInfo',
+      bread1: '企业背景',
+      bread2: '基本信息',
+      companyName: query.name,
+    };
   }
   handleClick = (e) => {
+    this.initState(e)
+  }
+
+  componentDidMount() {
+    this.initState()
+  }
+
+  initState(e) {
+    const { history, match } = this.props;
+    const location = history.location;
+    const query = parseUrl(location.search);
+    const params = match.params;
+    const curItem = e ? e.key : params.item;
+    const openKey = this.state.openKeys[0] || params.mod;
+    const breads = this.getBread(openKey , curItem);
     this.setState({
-      curItem: e.key,
+      curItem,
+      openKeys: [openKey],
+      bread1: breads.bread1.text,
+      bread2: breads.bread2.text,
+      companyName: query.name
     })
   }
+
   openChange = (keys) => {
     this.setState({
       openKeys: [keys.pop()]
@@ -30,10 +57,13 @@ class App extends React.Component {
   }
   // 渲染菜单
   setMenu = () => {
-    const { match } = this.props;
+    const { location } = this.props;
     const menuItem = this.props.menu.map(function (m, i) {
       const parent = m.parent;
-      const items = m.item.map((item, index) => <Menu.Item key={item.id}><Link to={`${match.url}/${item.id}`}>{item.text}</Link></Menu.Item>);
+      const items = m.item.map((item, index) => {
+        const to = `/detail/${parent.id}/${item.id}${location.search}`;
+        return <Menu.Item key={item.id}><Link to={to}>{item.text}</Link></Menu.Item>
+      });
       return <SubMenu key={parent.id} title={<span><Icon type={parent.icon} />{parent.text}</span>}
       >
         {items}
@@ -48,11 +78,9 @@ class App extends React.Component {
       {menuItem}
     </Menu>
   }
-
-
   render() {
-    const { match } = this.props;
     const SildMenu = this.setMenu();
+    const routes = this.setRoute();
     return (
       <Layout style={{ height: '100vh' }}>
         <Sider style={styles.sider}>
@@ -70,9 +98,9 @@ class App extends React.Component {
           <Header style={{ background: '#fff', padding: 0 }}>
             {/*面包屑*/}
             <Breadcrumb style={{ margin: '12px 0', marginLeft: 50 }}>
-              <Breadcrumb.Item>公司</Breadcrumb.Item>
-              <Breadcrumb.Item>大菜单</Breadcrumb.Item>
-              <Breadcrumb.Item>小菜单</Breadcrumb.Item>
+              <Breadcrumb.Item>{this.state.companyName}</Breadcrumb.Item>
+              <Breadcrumb.Item>{this.state.bread1}</Breadcrumb.Item>
+              <Breadcrumb.Item>{this.state.bread2}</Breadcrumb.Item>
             </Breadcrumb>
           </Header>
 
@@ -80,9 +108,7 @@ class App extends React.Component {
 
           <Content style={styles.content} className="content">
             <div style={styles.detailContent}>
-              <Route path={`${match.url}/staff`} component={Staff}/>
-              <Route path={`${match.url}/baseinfo`} component={Info}/>
-             
+                {routes}  
           </div>
           </Content>
 
@@ -96,6 +122,38 @@ class App extends React.Component {
       </Layout>
     )
   }
+
+  setRoute() {
+    const { menu } = this.props;
+    let routes = [];
+    menu.forEach(m => {
+      m.item.forEach(it => {
+        it.parentId = m.parent.id;
+      })
+      routes = routes.concat(m.item);
+    })
+    routes = routes.map(item => {
+      const path = `/detail/${item.parentId}/${item.id}`;
+      return <Route path={path} component={item.component} key={`${item.parentId}-${item.id}`}/>
+    })
+    return routes
+  }
+
+  getBread(openKey, itemId) {
+      const menu = this.props.menu;
+      const itemGruop = menu.filter((m) => m.parent.id === openKey)[0]
+      return {
+          bread1: {
+            id: openKey,
+            text: itemGruop.parent.text
+          },
+          bread2: {
+            id: itemId,
+            text: (itemGruop.item.filter(it => it.id === itemId)[0] || {}).text
+          }
+      }
+  }
+
 }
 
 
@@ -108,13 +166,15 @@ App.defaultProps = {
     },
     item: [{
       text: '基本信息',
-      id: 'baseInfo'
+      id: 'baseInfo',
+      component: Info,
     }, {
       text: '主要人员',
-      id: 'staff'
+      id: 'staff',
+      component: Staff,
     }, {
       text: '股东信息',
-      id: 'holder'
+      id: 'holder',
     }, {
       text: '对外投资',
       id: 'investment'
@@ -220,25 +280,25 @@ App.defaultProps = {
 const styles = {
   headerLogo: {
     position: 'fixed',
-    left: '28',
-    top: '15',
-    width: '150',
-    height: '30'
+    left: 28,
+    top: 15,
+    width: 150,
+    height: 30
   },
   header: {
     position: 'fixed',
     top: 0,
     width: '100%',
-    height: '60'
+    height: 60
   },
   sider: {
     backgroundColor: 'white',
-    paddingTop: '65',
+    paddingTop: 65,
     overflowX: 'hidden',
     overflowY: 'auto'
   },
   foot: {
-    paddingTop: '10',
+    paddingTop: 10,
     height: 40,
     textAlign: 'center',
   },
@@ -255,7 +315,6 @@ const styles = {
     textAlign: 'center' 
   }
 };
-
 
 
 export default App

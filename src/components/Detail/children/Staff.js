@@ -1,7 +1,15 @@
 import React from 'react'
+// import { Table } from 'antd'
 
-export default class Staff extends React.Component {
+class Staff extends React.Component {
     render() {
-        return <h1>我是staff</h1>
+        return (
+            <div>
+                <h1>staff</h1>
+            </div>
+        )
     }
 }
+
+export default Staff
+

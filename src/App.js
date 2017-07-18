@@ -1,9 +1,10 @@
 import { Button, Input, Dropdown, Menu, Icon } from 'antd';
 import Foot from './components/Foot/Foot'
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 import logo from './static/icon-large.png';
-
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,17 +20,25 @@ class App extends React.Component {
   searchData = (event) => {
     const value = event.target.value.trim();
     const showDropDown = !!value;
-    this.setState({
-      value,
-      showDropDown
-    });
+    axios.post('/search', {
+      name: value,
+    }).then((res) => {
+      this.setState({
+        value,
+        showDropDown,
+        searchResult: res.data.data
+      });
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
 
   renderResult = () => {
     let items = this.state.searchResult.map(function(d) {
       return <Menu.Item key={d.id}>
-          <a href="#">{d.name}</a>
+          <Link to={`/detail/baseInfo?id=${d.id}&name=${d.name}`}>{d.name}</Link>
         </Menu.Item>
     })
     if (!items.length) {
@@ -80,7 +89,7 @@ class App extends React.Component {
           overlay={this.renderResult()} 
           visible={this.state.showDropDown}
           >
-            <a className="ant-dropdown-link" href="#"></a>
+            <a className="ant-dropdown-link"></a>
           </Dropdown>
         </div>
         
@@ -92,6 +101,7 @@ class App extends React.Component {
     )
   }
 }
+
 
 
 export default App
