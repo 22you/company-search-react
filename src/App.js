@@ -20,13 +20,13 @@ class App extends React.Component {
   searchData = (event) => {
     const value = event.target.value.trim();
     const showDropDown = !!value;
-    axios.post('/search', {
+    axios.get('/search', {
       name: value,
     }).then((res) => {
       this.setState({
         value,
         showDropDown,
-        searchResult: res.data.data
+        searchResult: res.data.list
       });
     })
     .catch((err) => {
@@ -38,7 +38,7 @@ class App extends React.Component {
   renderResult = () => {
     let items = this.state.searchResult.map(function(d) {
       return <Menu.Item key={d.id}>
-          <Link to={`/detail/baseInfo?id=${d.id}&name=${d.name}`}>{d.name}</Link>
+          <Link to={`/detail/bj/baseInfo?id=${d.id}&name=${d.name}`}>{d.name}</Link>
         </Menu.Item>
     })
     if (!items.length) {

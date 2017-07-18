@@ -75,13 +75,9 @@ class Info extends React.Component {
         const { location } = this.props;
         const search = location.search;
         const query = parseUrl(search);
-        axios.get(`/detail/${query.id}/info`, query)
+        axios.get(`/info`, query)
         .then((res) => {
-            if (!res.data.status) {
-                return message.error(res.data.message)
-            }
-            const data = res.data.data;
-            this.setState(data)
+            this.setState(res.data)
         })
         .catch(message.error)
     }
