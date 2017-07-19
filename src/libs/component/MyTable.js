@@ -23,21 +23,23 @@ class MyTable extends React.Component {
         )
     }
 
+    hideLoading() {
+        this.setState({
+            loading: false
+        })
+    }
+
     componentDidMount() {
         const mod = this.props.mod;
         if (!mod) {
-            return this.setState({
-                loading: false
-            })
+            return this.hideLoading()
         }
         axios.get(`/${mod}`)
         .then(res => {
             this.setState({data: res.data.data, loading: false})
         })
         .catch(err => {
-            this.setState({
-                loading: false
-            })
+            this.hideLoading()
             Message.error('获取数据失败')
         })
     }
