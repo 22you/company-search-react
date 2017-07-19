@@ -13,21 +13,11 @@ const readData = (mod, option = {}) => {
     })
 }
 
-module.exports = function(app) {
-    app.get('/info', function(req, res) {
-        readData('baseInfo')
-        .then(data => {
-            res.json(data)
-        })
-        .catch(err => res.json({
-            err: err.toString()
-        }))
-    })
-    app.get('/search', function(req, res) {
-        readData('suggestList')
-        .then(list => {
-            res.json({list})
-        })
+module.exports = function (app) {
+    app.get('/:mod', function (req, res) { 
+        const { mod } = req.params;
+        readData(mod)
+        .then(data => res.json({data}))
         .catch(err => res.json({
             err: err.toString()
         }))

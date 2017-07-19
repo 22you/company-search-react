@@ -2,8 +2,10 @@ import { Layout, Breadcrumb, Menu, Icon } from 'antd';
 import React from 'react';
 import logo from '../../static/icon-large.png';
 import { Link, Route } from 'react-router-dom'
+import NoData from '../../libs/component/NoData'
 import Staff from './children/Staff'
 import Info from './children/Info'
+import Holder from './children/Holder'
 import { parseUrl } from '../../libs/utils'
 
 const SubMenu = Menu.SubMenu;
@@ -109,7 +111,7 @@ class App extends React.Component {
           <Content style={styles.content} className="content">
             <div style={styles.detailContent}>
                 {routes}  
-          </div>
+            </div>
           </Content>
 
           <div style={styles.foot}>
@@ -134,7 +136,7 @@ class App extends React.Component {
     })
     routes = routes.map(item => {
       const path = `/detail/${item.parentId}/${item.id}`;
-      return <Route path={path} component={item.component} key={`${item.parentId}-${item.id}`}/>
+      return <Route path={path} component={item.component || NoData} key={`${item.parentId}-${item.id}`}/>
     })
     return routes
   }
@@ -175,6 +177,7 @@ App.defaultProps = {
     }, {
       text: '股东信息',
       id: 'holder',
+      component: Holder
     }, {
       text: '对外投资',
       id: 'investment'

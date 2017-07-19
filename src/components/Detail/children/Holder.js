@@ -1,19 +1,23 @@
 import React from 'react'
-import Mytable from '../../../libs/component/MyTable';
+import Mytable from '../../../libs/component/MyTable'
 
-class Staff extends React.Component {
+class Holder extends React.Component {
     constructor(props) {
         super(props)
         const width = this.props.width
         this.state = {
             columns: [
                 {
-                    title: "姓名",
+                    title: "股东",
                     dataIndex: 'name',
                     width,
                 }, {
-                    title: "职位",
-                    dataIndex: 'zhiwei',
+                    title: "出资比例",
+                    dataIndex: 'percent',
+                    width,
+                }, {
+                    title: "认缴出资",
+                    dataIndex: 'money',
                     width,
                 }
             ]
@@ -25,14 +29,14 @@ class Staff extends React.Component {
             <div>
                 <Mytable
                     columns={state.columns}
-                    mod="staff"
+                    mod="holder"
                 />
             </div>
         )
     }
 }
 
-Staff.defaultProps = {
+Holder.defaultProps = {
     width: 300
 }
-export default Staff
+export default Holder

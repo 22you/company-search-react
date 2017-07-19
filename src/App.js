@@ -26,7 +26,7 @@ class App extends React.Component {
       this.setState({
         value,
         showDropDown,
-        searchResult: res.data.list
+        searchResult: res.data.data
       });
     })
     .catch((err) => {
