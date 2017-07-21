@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Table, Spin, Message } from 'antd'
 import axios from 'axios'
 
-class MyTable extends React.Component {
-    state = {
-        data: [],
-        loading: true
+class MyTable extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: [],
+            loading: true
+        }
     }
     render() {
         const prop = this.props;
@@ -13,7 +16,7 @@ class MyTable extends React.Component {
         const content = state.loading
             ? <div style={style.spin}><Spin size="large"/></div>
             : <Table
-                dataSource={this.state.data}
+                dataSource={state.data}
                 columns={prop.columns}
                 pagination={prop.pagination || false}/>
         return (
@@ -38,7 +41,7 @@ class MyTable extends React.Component {
         .then(res => {
             this.setState({data: res.data.data, loading: false})
         })
-        .catch(err => {
+        .catch(() => {
             this.hideLoading()
             Message.error('获取数据失败')
         })

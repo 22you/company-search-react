@@ -13,6 +13,8 @@ class Info extends React.Component {
     }
     render() {
         const state = this.state;
+        const { location } = this.props;
+        const { name } = parseUrl(location.search)
         return (
             <div>
                 <Card style={style.headerCard}>
@@ -20,7 +22,7 @@ class Info extends React.Component {
                     <table style={style.headerTable} className="header-table">
                         <tr>
                             <td>
-                                <h3>{state.name}</h3>
+                                <h3>{name}</h3>
                             </td>
                         </tr>
                         <tr>

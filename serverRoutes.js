@@ -8,7 +8,7 @@ const readData = (mod, option = {}) => {
             if (err) {
                 return rej(err)
             }
-            res(JSON.parse(data)[mod] || {})
+            res(JSON.parse(data)[mod] || [])
         })
     })
 }

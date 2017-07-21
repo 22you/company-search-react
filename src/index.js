@@ -4,7 +4,6 @@ import App from './App';
 import Detail from '../src/components/Detail/Detail';
 import registerServiceWorker from './registerServiceWorker';
 import { HashRouter, Route} from 'react-router-dom'
-import './index.css';
 
 
 

@@ -2,11 +2,17 @@ import { Layout, Breadcrumb, Menu, Icon } from 'antd';
 import React from 'react';
 import logo from '../../static/icon-large.png';
 import { Link, Route } from 'react-router-dom'
+import { parseUrl } from '../../libs/utils'
+
+// components
 import NoData from '../../libs/component/NoData'
 import Staff from './children/Staff'
 import Info from './children/Info'
 import Holder from './children/Holder'
-import { parseUrl } from '../../libs/utils'
+import Investment from './children/Investment'
+import Changeinfo from './children/Changeinfo'
+import Companyrongzi from './children/Companyrongzi'
+import Foot from '../Foot/Foot'
 
 const SubMenu = Menu.SubMenu;
 
@@ -87,7 +93,7 @@ class App extends React.Component {
       <Layout style={{ height: '100vh' }}>
         <Sider style={styles.sider}>
           {/*logo*/}
-          <a>
+          <a href="/">
             <img style={styles.headerLogo} src={logo} alt=""></img>
           </a>
 
@@ -114,11 +120,7 @@ class App extends React.Component {
             </div>
           </Content>
 
-          <div style={styles.foot}>
-            <span className="foot-span">
-              &copy; 新智资讯 2014-2015 <a href="mailto:contact@beyondlink.net">联系我们</a> | <a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11010360号-3</a>
-            </span>
-          </div>
+          <Foot/>
 
         </Layout>
       </Layout>
@@ -158,6 +160,7 @@ class App extends React.Component {
 
 }
 
+console.log(Changeinfo)
 
 App.defaultProps = {
   menu: [{
@@ -180,10 +183,12 @@ App.defaultProps = {
       component: Holder
     }, {
       text: '对外投资',
-      id: 'investment'
+      id: 'investment',
+      component: Investment
     }, {
       text: '变更记录',
-      id: 'changeinfo'
+      id: 'changeinfo',
+      component: Changeinfo
     }]
   }, {
     parent: {
@@ -193,7 +198,8 @@ App.defaultProps = {
     },
     item: [{
       text: '融资历史',
-      id: 'companyrongzi'
+      id: 'companyrongzi',
+      component: Companyrongzi
     }, {
       text: '核心团队',
       id: 'companyteammember'
