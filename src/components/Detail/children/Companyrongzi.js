@@ -2,25 +2,15 @@ import React from 'react'
 import Mytable from '../../../libs/component/MyTable'
 
 class Companyrongzi extends React.Component {
-    render() {
-        return (
-            <div>
-                <Mytable
-                    columns={this.props.columns}
-                    mod="companyrongzi"
-                />
-            </div>
-        )
-    }
+    render = () => <Mytable columns={this.props.columns} mod="companyrongzi"/>
 }
-
 
 Companyrongzi.defaultProps = {
     columns: [
         {
             title: "时间",
             dataIndex: 'time',
-            width: 120
+            width: 180
         }, {
             title: "轮次",
             dataIndex: 'round',
@@ -49,6 +39,3 @@ Companyrongzi.defaultProps = {
     ]
 }
 export default Companyrongzi
-
-
-			

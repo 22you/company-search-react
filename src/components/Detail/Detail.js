@@ -6,13 +6,15 @@ import { parseUrl } from '../../libs/utils'
 
 // components
 import NoData from '../../libs/component/NoData'
+import Foot from '../Foot/Foot'
 import Staff from './children/Staff'
 import Info from './children/Info'
-import Holder from './children/Holder'
+import Holder from './children/Holder'  
 import Investment from './children/Investment'
 import Changeinfo from './children/Changeinfo'
 import Companyrongzi from './children/Companyrongzi'
-import Foot from '../Foot/Foot'
+import Companyproduct from './children/Companyproduct'
+
 
 const SubMenu = Menu.SubMenu;
 
@@ -205,7 +207,8 @@ App.defaultProps = {
       id: 'companyteammember'
     }, {
       text: '企业业务',
-      id: 'companyproduct'
+      id: 'companyproduct',
+      component: Companyproduct
     }, {
       text: '投资事件',
       id: 'jigoutzanli'

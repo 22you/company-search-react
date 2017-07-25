@@ -2,18 +2,8 @@ import React from 'react'
 import Mytable from '../../../libs/component/MyTable'
 
 class Changeinfo extends React.Component {
-    render() {
-        return (
-            <div>
-                <Mytable
-                    columns={this.props.columns}
-                    mod="changeinfo"
-                />
-            </div>
-        )
-    }
+    render = () => <Mytable columns={this.props.columns} mod="changeinfo"/>
 }
-
 
 Changeinfo.defaultProps = {
     columns: [
@@ -28,7 +18,6 @@ Changeinfo.defaultProps = {
         }, {
             title: "变更前",
             dataIndex: 'befor',
-            width: 300
         }, {
             title: "变更后",
             dataIndex: 'after',
@@ -37,6 +26,3 @@ Changeinfo.defaultProps = {
     ]
 }
 export default Changeinfo
-
-
-	

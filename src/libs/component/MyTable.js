@@ -13,11 +13,16 @@ class MyTable extends Component {
     render() {
         const prop = this.props;
         const state = this.state;
+        const columns = prop.columns.map(c => {
+            c.width = c.width || prop.columnWidth
+            return c
+        })
+        console.log(columns)
         const content = state.loading
             ? <div style={style.spin}><Spin size="large"/></div>
             : <Table
                 dataSource={state.data}
-                columns={prop.columns}
+                columns={columns}
                 pagination={prop.pagination || false}/>
         return (
             <div>
@@ -26,7 +31,7 @@ class MyTable extends Component {
         )
     }
 
-    hideLoading() {
+    hideLoading = () => {
         this.setState({
             loading: false
         })
@@ -48,6 +53,9 @@ class MyTable extends Component {
     }
 }
 
+MyTable.defaultProps = {
+    columnWidth: 300
+}
 const style = {
     spin: {
         width: 200,
