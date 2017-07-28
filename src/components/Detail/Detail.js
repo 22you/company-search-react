@@ -162,8 +162,6 @@ class App extends React.Component {
 
 }
 
-console.log(Changeinfo)
-
 App.defaultProps = {
   menu: [{
     parent: {
@@ -202,91 +200,95 @@ App.defaultProps = {
       text: '融资历史',
       id: 'companyrongzi',
       component: Companyrongzi
-    }, {
-      text: '核心团队',
-      id: 'companyteammember'
-    }, {
-      text: '企业业务',
-      id: 'companyproduct',
-      component: Companyproduct
-    }, {
-      text: '投资事件',
-      id: 'jigoutzanli'
-    }, {
-      text: '竞品信息',
-      id: 'companyjingpin'
-    }]
-  }, {
-    parent: {
-      text: '司法风险',
-      id: 'sffx',
-      icon: 'exclamation-circle-o'
     },
-    item: [{
-      text: '法律诉讼',
-      id: 'lawsuit'
-    }, {
-      text: '法院公告',
-      id: 'court'
-    }, {
-      text: '被执行人',
-      id: 'zhixing'
-    }]
-  }, {
-    parent: {
-      text: '经营风险',
-      id: 'jyfx',
-      icon: 'exclamation-circle-o'
+    // {
+    //   text: '核心团队',
+    //   id: 'companyteammember'
+    // }, {
+    //   text: '企业业务',
+    //   id: 'companyproduct',
+    //   component: Companyproduct
+    // }, {
+    //   text: '投资事件',
+    //   id: 'jigoutzanli'
+    // }, {
+    //   text: '竞品信息',
+    //   id: 'companyjingpin'
+    // }
+    ]
     },
-    item: [{
-      text: '行政处罚',
-      id: 'punishment'
-    }, {
-      text: '股权出质',
-      id: 'equity'
-    }]
-  }, {
-    parent: {
-      text: '经营状况',
-      id: 'jyzk',
-      icon: 'clock-circle-o'
-    },
-    item: [{
-      text: '招投标',
-      id: 'bid'
-    }, {
-      text: '招聘',
-      id: 'recruit'
-    }, {
-      text: '税务评级',
-      id: 'taxcredit'
-    }, {
-      text: '抽查检查',
-      id: 'check'
-    }, {
-      text: '产品信息',
-      id: 'productinfo'
-    }]
-  },  {
-    parent: {
-      text: '知识产权',
-      id: 'zscq',
-      icon: 'book',
-    },
-    item: [{
-      text: '商标信息',
-      id: 'tm'
-    }, {
-      text: '专利',
-      id: 'patent'
-    }, {
-      text: '著作权',
-      id: 'copyr'
-    }, {
-      text: '网站备案',
-      id: 'icp'
-    }]
-  }],
+  //   {
+  //   parent: {
+  //     text: '司法风险',
+  //     id: 'sffx',
+  //     icon: 'exclamation-circle-o'
+  //   },
+  //   item: [{
+  //     text: '法律诉讼',
+  //     id: 'lawsuit'
+  //   }, {
+  //     text: '法院公告',
+  //     id: 'court'
+  //   }, {
+  //     text: '被执行人',
+  //     id: 'zhixing'
+  //   }]
+  // }, {
+  //   parent: {
+  //     text: '经营风险',
+  //     id: 'jyfx',
+  //     icon: 'exclamation-circle-o'
+  //   },
+  //   item: [{
+  //     text: '行政处罚',
+  //     id: 'punishment'
+  //   }, {
+  //     text: '股权出质',
+  //     id: 'equity'
+  //   }]
+  // }, {
+  //   parent: {
+  //     text: '经营状况',
+  //     id: 'jyzk',
+  //     icon: 'clock-circle-o'
+  //   },
+  //   item: [{
+  //     text: '招投标',
+  //     id: 'bid'
+  //   }, {
+  //     text: '招聘',
+  //     id: 'recruit'
+  //   }, {
+  //     text: '税务评级',
+  //     id: 'taxcredit'
+  //   }, {
+  //     text: '抽查检查',
+  //     id: 'check'
+  //   }, {
+  //     text: '产品信息',
+  //     id: 'productinfo'
+  //   }]
+  // },  {
+  //   parent: {
+  //     text: '知识产权',
+  //     id: 'zscq',
+  //     icon: 'book',
+  //   },
+  //   item: [{
+  //     text: '商标信息',
+  //     id: 'tm'
+  //   }, {
+  //     text: '专利',
+  //     id: 'patent'
+  //   }, {
+  //     text: '著作权',
+  //     id: 'copyr'
+  //   }, {
+  //     text: '网站备案',
+  //     id: 'icp'
+  //   }]
+  // }
+  ],
 };
 
 const styles = {

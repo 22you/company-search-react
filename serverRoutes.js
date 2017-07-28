@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path');
 
 const readData = (mod, option = {}) => {
-    const dataJsonFile = path.join(__dirname, './src/libs/data.json')
+    const dataJsonFile = path.join(__dirname, './src/static/data.json')
     return new Promise(function(res, rej) {
         fs.readFile(dataJsonFile, 'utf-8', function(err, data) {
             if (err) {

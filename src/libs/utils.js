@@ -1,5 +1,3 @@
-import React from 'react'
-import Mytable from '../libs/component/MyTable'
 
 export function parseUrl(search) {
     const obj = {};
@@ -12,14 +10,3 @@ export function parseUrl(search) {
     return obj;
 }
 
-export function creatComponent(mod, columns) {
-    class Children extends React.Component {
-        constructor(props) {
-            super(props)
-        }
-        render() {
-            return <Mytable mod={mod} columns={[]}/>
-        }
-    }
-    return Children
-}
